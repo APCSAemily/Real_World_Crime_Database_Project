@@ -1,0 +1,97 @@
+1) SETUP COMMANDS
+
+# Check current Git status (modified, new, deleted files)
+git status
+
+# Check current branch
+git branch
+
+# List remote repositories
+git remote -v
+
+--------------------------------------------------------
+
+2) ADDING AND COMMITTING
+
+# Stage a single file
+git add filename
+
+# Stage all changes
+git add .
+
+# Commit staged changes with a message
+git commit -m "Your message here"
+
+# Commit with all changes (skip staging)
+git commit -am "Your message here"
+
+--------------------------------------------------------
+
+3) PUSHING AND PULLING
+# Push commits to the remote repo (default branch)
+git push
+
+# Push to a specific branch
+git push origin branch_name
+
+# Pull latest changes from remote
+git pull
+
+# Fetch updates from remote without merging
+git fetch
+
+--------------------------------------------------------
+
+4) BRANCHING
+
+# Create a new branch
+git branch new_branch_name
+
+# Switch to a branch
+git checkout branch_name
+
+# Create and switch to a new branch
+git checkout -b new_branch_name
+
+# Merge another branch into current branch
+git merge branch_name
+
+--------------------------------------------------------
+
+
+5) UNDO and RESET
+# Unstage a file (keep changes)
+git reset filename
+
+# Discard local changes in a file
+git checkout -- filename
+
+# Reset last commit (keep changes staged)
+git reset --soft HEAD~1
+
+# Reset last commit (discard changes)
+git reset --hard HEAD~1
+
+--------------------------------------------------------
+
+6) CLONING and REMOTE
+# Clone a repo to your local machine
+git clone https://github.com/username/repo.git
+
+# Add a new remote repo
+git remote add origin https://github.com/username/repo.git
+
+# Remove a remote
+git remote remove origin
+
+--------------------------------------------------------
+
+7) HELPFUL LOGS
+# Show commit history
+git log
+
+# Show a concise history
+git log --oneline
+
+# Show history graph
+git log --oneline --graph --all
