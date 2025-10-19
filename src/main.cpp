@@ -1,13 +1,13 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <string>
-#include <algorithm> 
+#include <algorithm>
 #include <cctype>
+#include <fstream>
+#include <iostream>
 #include <locale>
+#include <sstream>
+#include <string>
+#include <vector>
 using namespace std;
 
-int main(){
+int main() {
     return 0;
 }
