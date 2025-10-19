@@ -38,26 +38,6 @@ double safeStod(const string& s){
     }
 }
 
-struct Crime{
-    string INCIDENT_NUMBER;
-    string OFFENSE_CODE;
-    string OFFENSE_CODE_GROUP;
-    string OFFENSE_DESCRIPTION;
-    string DISTRICT;
-    string REPORTING_AREA;
-    string SHOOTING;
-    string OCCURRED_ON_DATE;
-    int YEAR;
-    int MONTH;
-    string DAY_OF_WEEK;
-    int HOUR;
-    string UCR_PART;
-    string STREET;
-    double Lat;
-    double Long;
-    string Location; // (quoted "(Lat, Long)"
-};
-
 Crime parseLine(const string& line){
     Crime c; //create crime object
     stringstream ss(line); //instantiate stringstream
