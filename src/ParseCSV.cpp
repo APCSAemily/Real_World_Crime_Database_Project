@@ -1,44 +1,28 @@
 #include "ParseCSV.h"
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
-Crime parseLine(const string &line) {
-    Crime c;               // create crime object
-    stringstream ss(line); // instantiate stringstream
-    string cell;           // each of the cell is a string
+CrimeData parseLine(const std::string &line) {
+    CrimeData c;                // create crime object
+    std::stringstream ss(line); // instantiate stringstream
+    std::string cell;           // each of the cell is a string
+    std::vector<std::string> columns; // holds all of the column names
 
-    getline(ss, c.INCIDENT_NUMBER, ',');
-    getline(ss, c.OFFENSE_CODE, ',');
-    getline(ss, c.OFFENSE_CODE_GROUP, ',');
-    getline(ss, c.OFFENSE_DESCRIPTION, ',');
-    getline(ss, c.DISTRICT, ',');
-    getline(ss, c.REPORTING_AREA, ',');
-    getline(ss, c.SHOOTING, ',');
-    getline(ss, c.OCCURRED_ON_DATE, ',');
+    // more efficient way of parsing csv files
+    while (std::getline(ss, cell, ',')) {
+        columns.push_back(cell); // now with a vector of all columns we can extract the one we need
+    }
 
-    getline(ss, cell, ',');
-    c.YEAR = safeStoi(cell);
-    getline(ss, cell, ',');
-    c.MONTH = safeStoi(cell);
-    getline(ss, cell, ',');
-    // cout << "DAY_OF_WEEK raw: " << "[" << cell << "]" << endl;
-    c.DAY_OF_WEEK = trim(cell);
-    getline(ss, cell, ',');
-    // cout << "HOUR raw: " << "[" << cell << "]" << endl;
-    c.HOUR = safeStoi(trim(cell));
+    // check to prevent against errors 
+    if (columns.size() >= 4) {
+        c.OFFENSE_DESCRIPTION = columns[3]; // the 4th column (index 3) is the offense description
+    }
 
-    getline(ss, c.UCR_PART, ',');
-    getline(ss, c.STREET, ',');
-    getline(ss, cell, ',');
-    c.Lat = safeStod(cell);
-    getline(ss, cell, ',');
-    c.Long = safeStod(cell);
-
-    // read rest of the line as Location
-    getline(ss, c.Location);
     return c;
 }
 
+// pretty much what was in main function before
 std::vector<CrimeData> returnCrimeData(const std::string &filename) {
     std::ifstream file(filename);
 
