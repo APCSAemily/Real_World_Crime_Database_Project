@@ -122,8 +122,10 @@ int main(){
     for(size_t i = 0; i < crimes.size() && i < 5; i++){
         cout << crimes[i].INCIDENT_NUMBER << " | "
         << crimes[i].OFFENSE_DESCRIPTION << " | "
+        << crimes[i].OCCURRED_ON_DATE << " | "
         << crimes[i].HOUR << " | "
         << crimes[i].Location << endl;
+
     }
     return 0;
 }
