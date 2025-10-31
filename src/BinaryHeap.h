@@ -1,27 +1,19 @@
-#ifndef BINARY_HEAP_H
-#define BINARY_HEAP_H
-
-#include <iostream>
+#pragma once
+#include "Crime.h"
+#include "BinaryHeap.h"
+#include <stdexcept>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
-class Crime;
-
+struct Crime; // Forward declaration - we don't need full Crime definition
 class BinaryHeap{
-private:
-  vector<Crime>crimeData;
-  int parent(int i);
-  int left(int i);
-  int right(int i);
+  std::vector<Crime> data;
+  void up(size_t i);
+  void down(size_t i);
 
-  void goUp(int i);
-  void goDown(int i);
-
-public:
-  void insert(const Crime& c);
-  Crime removeMax();
-  bool isEmpty();
-  void printTop(int n);
-
+  public:
+    void push(const Crime& c);
+    Crime pop();
+    bool empty() const;
 };
-#endif
