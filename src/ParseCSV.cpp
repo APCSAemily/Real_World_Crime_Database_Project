@@ -15,8 +15,8 @@ Crime parseLine(const std::string &line) {
     }
 
     // check to prevent against errors 
-    if (columns.size() >= 4) {
-        c.OFFENSE_DESCRIPTION = columns[3]; // the 4th column (index 3) is the offense description
+    if (columns.size() >= 3) {
+        c.OFFENSE_CODE_GROUP = columns[2]; // the 3rd column (index 2) is the offense code group
     }
 
     return c;
