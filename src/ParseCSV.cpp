@@ -3,8 +3,8 @@
 #include <iostream>
 #include <sstream>
 
-CrimeData parseLine(const std::string &line) {
-    CrimeData c;                // create crime object
+Crime parseLine(const std::string &line) {
+    Crime c;                // create crime object
     std::stringstream ss(line); // instantiate stringstream
     std::string cell;           // each of the cell is a string
     std::vector<std::string> columns; // holds all of the column names
@@ -23,7 +23,7 @@ CrimeData parseLine(const std::string &line) {
 }
 
 // pretty much what was in main function before
-std::vector<CrimeData> returnCrimeData(const std::string &filename) {
+std::vector<Crime> returnCrimeData(const std::string &filename) {
     std::ifstream file(filename);
 
     if (!file.is_open()) {
@@ -32,13 +32,13 @@ std::vector<CrimeData> returnCrimeData(const std::string &filename) {
     }
 
     std::string line;
-    std::vector<CrimeData> crimes;
+    std::vector<Crime> crimes;
 
     // skip the header
     std::getline(file, line);
 
     while (std::getline(file, line)) {
-        CrimeData c = parseLine(line);
+        Crime c = parseLine(line);
         crimes.push_back(c);
     }
 

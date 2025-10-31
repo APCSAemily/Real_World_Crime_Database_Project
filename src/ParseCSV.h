@@ -3,4 +3,4 @@
 #include <vector>
 #include <string>
 
-std::vector<CrimeData> returnCrimeData(const std::string &filename);
+std::vector<Crime> returnCrimeData(const std::string &filename);
