@@ -1,20 +1,46 @@
 #include "BinaryHeap.h"
+#include <stdexcept>
+#include "Crime.h"
+#include <algorithm>
+#include <vector>
 using namespace std;
 
-int BinaryHeap::parent(int i){return (i-1)/2;}
-int BinaryHeap::left(int i) { return 2*i + 1;}
-int BinaryHeap::right(int i){ return 2*i + 2;}
-
-bool BinaryHeap::isEmpty(){
-  return crimeData.empty(); }
-
-void BinaryHeap::insert(const Crime& c){
-  crimeData.push_back(c);
-  goUp(crimeData.size() -1);
-}
-void BinaryHeap::goUp (int i ) {
-  while(i>0 && crimeData[i].HOUR > crimeData[parent(i)].HOUR){
-    swap(crimeData[i], crimeData[parent(i)]);
-    i = parent(i);
+void BinaryHeap::up(size_t i){
+  while(i > 0){
+    size_t p = (i - 1) / 2;
+    if(!(data[i].time < data[p].time)) break;
+       std::swap(data[i], data[p]);
+       i = p;
   }
+}
+
+void BinaryHeap::down(size_t i){
+  size_t n = data.size();
+  while(true){
+    size_t best = i;
+    size_t l = 2 * i + 1, r = 2 * i + 2;
+    if(l < n && data[l].time < data[best].time) best = l;
+    if(r < n && data[r].time < data[best].time) best = r;
+    if( best == i) break;
+    std::swap(data[i], data[best]);
+    i = best;
+  }
+}
+
+void BinaryHeap::push(const Crime& c){
+  data.push_back(c);
+  up(data.size() - 1);
+}
+
+Crime BinaryHeap::pop(){
+  if(data.empty()) throw std::runtime_error("pop from empty heap");
+  Crime root = data[0];
+  data[0] = data.back();
+  data.pop_back();
+  if(!data.empty()) down(0);
+  return root;
+}
+
+bool BinaryHeap::empty() const{
+  return data.empty();
 }
