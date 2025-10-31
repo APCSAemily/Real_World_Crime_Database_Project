@@ -65,4 +65,6 @@ std::vector<Crime> returnCrimeData(const std::string &filename) {
     }
 
     file.close();
+
+    return crimes;
 }
