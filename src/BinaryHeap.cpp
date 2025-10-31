@@ -18,3 +18,33 @@ void BinaryHeap::goUp (int i ) {
     i = parent(i);
   }
 }
+Crime BinaryHeap::removeMax(){
+  if(crimeData.empty()){
+      Crime noCrime;
+      noCrime.OFFENSE_DESCRIPTION = "no data";
+      noCrime.HOUR = -1;
+      return noCrime;
+  }
+
+Crime root = crimeData[0];
+crimeData[0] = crimeData.back();
+crimeData.pop_back();
+goDown(0);
+return root;
+}
+
+void BinaryHeap::goDown(int i){
+  int size = crimeData.size();
+int biggestI = i;
+int leftChild = left(i);
+int rightChild = right(i);
+
+if(leftChild < size && crimeData[leftChild].HOUR > crimeData[biggestI].HOUR)
+    biggestI = leftChild;
+if(rightChild < size && crimeData[rightChild].HOUR > crimeData[biggestI].HOUR)
+  biggestI = rightChild;
+if (biggestI != i){
+  swap(crimeData[i], crimeData[biggestI]);
+  goDown(biggestI); 
+}
+}
